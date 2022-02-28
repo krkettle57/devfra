@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  terraform:
+    build:
+      context: .
+    volumes:
+      - ./:/app
+    tty: true
+    working_dir: /app
+    environment:
+      LOCAL_UID: ${LOCAL_UID}
+      LOCAL_GID: ${LOCAL_GID}
+      ASSUME_ROLE_AWS_ACCESS_KEY_ID: ${ASSUME_ROLE_AWS_ACCESS_KEY_ID}
+      ASSUME_ROLE_AWS_SECRET_ACCESS_KEY: ${ASSUME_ROLE_AWS_SECRET_ACCESS_KEY}
+      EXEC_TF_ROLE_ARN: ${EXEC_TF_ROLE_ARN}
+      ASSUME_ROLE_MFA_ARN: ${ASSUME_ROLE_MFA_ARN}
+      ASSUME_ROLE_AWS_REGION: ${ASSUME_ROLE_AWS_REGION:-ap-northeast-1}
