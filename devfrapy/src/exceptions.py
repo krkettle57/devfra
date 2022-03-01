@@ -1,0 +1,2 @@
+class DevfraError(Exception):
+    pass
