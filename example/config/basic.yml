@@ -1,0 +1,4 @@
+prefix: exbasic
+instances:
+ - name: user1
+ - name: user2

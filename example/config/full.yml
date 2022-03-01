@@ -1,0 +1,18 @@
+prefix: exfull
+networks:
+  vpc_cidr: "10.0.0.0/16"
+  public_subnet_cidr: "10.0.0.0/16"
+  private_subbet_cidr: "10.0.1.0/16"
+bastion:
+  ami_id: ami-08d56ac42e2d4a08b
+  instace_type: "t2.medium"
+  source_cidr_list:
+    - "0.0.0.0/0"
+  private_key_path: "/app/example/config/secrets/bastion/id_rsa"
+  public_key: "/app/example/config/secrets/bastion/id_rsa/id_rsa.pub"
+instances:
+  - name: user1
+  - name: user2
+    ami_id: ami-08d56ac42e2d4a08b
+    instance_type: "t2.large"
+    public_key: "/app/example/config/secrets/user2/id_rsa/id_rsa.pub"
