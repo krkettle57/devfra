@@ -14,7 +14,7 @@ RUN useradd user -m
 COPY pyproject.toml .
 COPY poetry.lock .
 RUN poetry install; \
-  poetry export -f requirements.txt > requirements.txt; \
+  poetry export -f requirements.txt --dev > requirements.txt; \
   pip install -r requirements.txt
 
 # set entrypoint
