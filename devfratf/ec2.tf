@@ -20,6 +20,7 @@ resource "aws_instance" "bastion" {
   subnet_id     = aws_subnet.public.id
   key_name      = aws_key_pair.bastion.key_name
   instance_type = var.bastion.instance_type
+  user_data     = var.bastion.user_data
   vpc_security_group_ids = [
     aws_security_group.bastion.id
   ]
@@ -58,6 +59,7 @@ resource "aws_instance" "devserver" {
     aws_security_group.devserver.id
   ]
   private_ip = each.value.private_ip
+  user_data  = each.value.user_data
 
   tags = {
     Name = "${var.prefix}-${each.key}"

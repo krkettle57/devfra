@@ -16,6 +16,7 @@ class TFVarBastionConfig(BaseModel):
     private_keypath: Path
     ami_id: str
     instance_type: str
+    user_data: str
 
 
 class TFVarInstaceConfig(BaseModel):
@@ -25,6 +26,7 @@ class TFVarInstaceConfig(BaseModel):
     ami_id: str
     instance_type: str
     private_ip: IPv4Address
+    user_data: str
 
 
 # The reason that source_cidr_list isn't the field of TFVarBastionConfig

@@ -24,6 +24,7 @@ class DevfraBastionConfig(BaseModel):
     private_keypath: Optional[Path] = None
     ami_id: str = DEFAULT_AMI_ID
     instance_type: str = DEFAULT_INSTANCE_TYPE
+    user_data: str = ""
 
 
 class DevfraInstanceConfig(BaseModel):
@@ -32,6 +33,7 @@ class DevfraInstanceConfig(BaseModel):
     private_keypath: Optional[Path] = None
     ami_id: str = DEFAULT_AMI_ID
     instance_type: str = DEFAULT_INSTANCE_TYPE
+    user_data: str = ""
 
 
 class DevfraConfig(BaseModel):
