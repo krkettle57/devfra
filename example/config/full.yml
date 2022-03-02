@@ -12,7 +12,7 @@ bastion:
   public_key: "/app/example/config/secrets/bastion/id_rsa/id_rsa.pub"
   user_data: |
       yum update -y
-      yum install jq
+      yum install jq -y
 instances:
   - name: user1
   - name: user2
