@@ -33,11 +33,14 @@ resource "aws_instance" "bastion" {
 
 resource "null_resource" "bastion_cmd" {
   for_each = var.instances
+  triggers = {
+    instance = aws_instance.bastion.id
+  }
   provisioner "remote-exec" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      host        = aws_instance.bastion.public_ip
+      host        = aws_eip.bastion.public_ip
       private_key = file(var.bastion.private_keypath)
     }
     inline = [
@@ -115,10 +118,9 @@ resource "aws_security_group" "devserver" {
 # EIP
 #------------------------------
 resource "aws_eip" "bastion" {
-  vpc = true
-}
-
-resource "aws_eip_association" "bastion" {
-  instance_id   = aws_instance.bastion.id
-  allocation_id = aws_eip.bastion.id
+  vpc      = true
+  instance = aws_instance.bastion.id
+  depends_on = [
+    aws_instance.bastion
+  ]
 }
