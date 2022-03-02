@@ -31,7 +31,7 @@ class TFVarInstaceConfig(BaseModel):
 #  Terraform map variable must have all the same element.
 class TFVarConfig(BaseModel):
     prefix: str
+    source_cidr_list: List[IPv4Network]
     network: TFVarNetworkConfig
     bastion: TFVarBastionConfig
     instances: Dict[str, TFVarInstaceConfig]
-    source_cidr_list: List[IPv4Network]
