@@ -11,8 +11,9 @@ bastion:
   private_key_path: "/app/example/config/secrets/bastion/id_rsa"
   public_key: "/app/example/config/secrets/bastion/id_rsa/id_rsa.pub"
   user_data: |
+      #!/bin/bash
       yum update -y
-      yum install jq -y
+      yum install -y jq
 instances:
   - name: user1
   - name: user2
@@ -20,5 +21,6 @@ instances:
     instance_type: "t2.large"
     public_key: "/app/example/config/secrets/user2/id_rsa/id_rsa.pub"
     user_data: |
+      #!/bin/bash
       yum update -y
-      yum install git -y
+      yum install -y git

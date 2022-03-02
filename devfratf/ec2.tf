@@ -33,9 +33,6 @@ resource "aws_instance" "bastion" {
 
 resource "null_resource" "bastion_cmd" {
   for_each = var.instances
-  triggers = {
-    instance = aws_instance.bastion.id
-  }
   provisioner "remote-exec" {
     connection {
       type        = "ssh"
