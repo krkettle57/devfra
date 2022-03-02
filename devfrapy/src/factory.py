@@ -30,6 +30,7 @@ def tfvar_bastion_factory(
         private_keypath=private_keypath,
         ami_id=devfra_bastion_config.ami_id,
         instance_type=devfra_bastion_config.instance_type,
+        user_data=devfra_bastion_config.user_data,
     )
     return tfvar_bastion_config
 
@@ -54,6 +55,7 @@ def tfvar_instance_factory(
         ami_id=devfra_instance_config.ami_id,
         instance_type=devfra_instance_config.instance_type,
         private_ip=private_ip,
+        user_data=devfra_instance_config.user_data,
     )
     return tfvar_instance_config
 

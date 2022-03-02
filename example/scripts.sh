@@ -11,7 +11,7 @@ init() {
     terraform init
   fi
 
-  if [ ! -f "${WORKDIR}/tfvar.json" ]; then
+  if [ ! -f "${WORKDIR}/config/tfvar.json" ]; then
     python ../devfrapy/src/main.py $DEVFRA_FILEPATH $WORKDIR
   fi
 }
@@ -29,7 +29,7 @@ apply() {
 }
 
 destroy() {
-  if [ ! -f "${WORKDIR}/tfvar.json" ]; then
+  if [ ! -f "${WORKDIR}/config/tfvar.json" ]; then
     echo "tfvar.json does not exit."
     exit 1
   fi

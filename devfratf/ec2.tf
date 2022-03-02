@@ -20,6 +20,7 @@ resource "aws_instance" "bastion" {
   subnet_id     = aws_subnet.public.id
   key_name      = aws_key_pair.bastion.key_name
   instance_type = var.bastion.instance_type
+  user_data     = var.bastion.user_data
   vpc_security_group_ids = [
     aws_security_group.bastion.id
   ]
@@ -36,7 +37,7 @@ resource "null_resource" "bastion_cmd" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      host        = aws_instance.bastion.public_ip
+      host        = aws_eip.bastion.public_ip
       private_key = file(var.bastion.private_keypath)
     }
     inline = [
@@ -58,6 +59,7 @@ resource "aws_instance" "devserver" {
     aws_security_group.devserver.id
   ]
   private_ip = each.value.private_ip
+  user_data  = each.value.user_data
 
   tags = {
     Name = "${var.prefix}-${each.key}"
@@ -113,10 +115,9 @@ resource "aws_security_group" "devserver" {
 # EIP
 #------------------------------
 resource "aws_eip" "bastion" {
-  vpc = true
-}
-
-resource "aws_eip_association" "eip_assoc" {
-  instance_id   = aws_instance.bastion.id
-  allocation_id = aws_eip.bastion.id
+  vpc      = true
+  instance = aws_instance.bastion.id
+  depends_on = [
+    aws_instance.bastion
+  ]
 }
