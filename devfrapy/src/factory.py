@@ -70,9 +70,9 @@ def tfvar_config_factory(
     }
     tfvar_config = TFVarConfig(
         prefix=devfra_config.prefix,
+        source_cidr_list=devfra_config.source_cidr_list,
         network=tfv_network_config,
         bastion=tfv_bastion_config,
         instances=tfv_instances_config,
-        source_cidr_list=devfra_config.source_cidr_list,
     )
     return tfvar_config, keypair_registry

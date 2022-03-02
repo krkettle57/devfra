@@ -36,7 +36,7 @@ class DevfraInstanceConfig(BaseModel):
 
 class DevfraConfig(BaseModel):
     prefix: str
+    source_cidr_list: List[IPv4Network]
     network: DevfraNetworkConfig
     bastion: DevfraBastionConfig
     instances: List[DevfraInstanceConfig]
-    source_cidr_list: List[IPv4Network]
